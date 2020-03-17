@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("discovery")
-@Api("服务发现")
+@Api(tags = "服务发现")
 public class DiscoveryController {
     @Autowired
     private DiscoveryClient discoveryClient;

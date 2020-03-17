@@ -12,6 +12,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @MapperScan("ratel.sso.mapper")
 public class RatelSsoApplication {
     public static void main(String[] args) {
-        new SpringApplication().run(RatelSsoApplication.class,args);
+        SpringApplication.run(RatelSsoApplication.class,args);
     }
 }
