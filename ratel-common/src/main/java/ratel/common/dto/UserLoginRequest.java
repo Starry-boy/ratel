@@ -14,4 +14,5 @@ public class UserLoginRequest {
     private String username;
     @NotEmpty(message = "密码不能为空")
     private String password;
+    private String redirectUrl;
 }

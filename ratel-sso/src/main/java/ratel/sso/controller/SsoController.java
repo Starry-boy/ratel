@@ -1,6 +1,7 @@
 package ratel.sso.controller;
 
 import com.alibaba.fastjson.JSON;
+import com.netflix.client.http.HttpResponse;
 import io.jsonwebtoken.Claims;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
@@ -8,9 +9,7 @@ import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.*;
 import ratel.common.dto.RatelResponse;
@@ -20,6 +19,9 @@ import ratel.sso.domain.User;
 import ratel.sso.service.UserService;
 import ratel.sso.util.JwtTokenUtil;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.util.HashMap;
 import java.util.Map;
@@ -29,7 +31,7 @@ import java.util.Map;
  * @date 2020/3/15
  */
 @Slf4j
-@RestController
+@Controller
 @RequestMapping("sso")
 @Api(tags = "用户登录相关接口")
 public class SsoController {
@@ -43,7 +45,7 @@ public class SsoController {
     }
     )
     @PostMapping("userLogin")
-    public RatelResponse userLogin(@Valid UserLoginRequest userLoginRequest){
+    public String userLogin(@Valid UserLoginRequest userLoginRequest, HttpServletResponse response){
         //查数据库
         User user = userService.getByUsername(userLoginRequest.getUsername());
         Assert.notNull(user,"用户名错误");
@@ -51,7 +53,10 @@ public class SsoController {
         payLoad.put("uid",user.getId());
         payLoad.put("exp",null);
         payLoad.put("user", JSON.toJSONString(user));
-        return new RatelResponse().success(JwtTokenUtil.generatorToken(payLoad));
+        Cookie token = new Cookie("token", JwtTokenUtil.generatorToken(payLoad));
+        token.setMaxAge((int)(System.currentTimeMillis()+ 6000 * 6000));
+        response.addCookie(token);
+        return String.format("redirect:%s",userLoginRequest.getRedirectUrl());
     }
 
     @ApiOperation("校验Token")
