@@ -4,9 +4,11 @@ import com.alibaba.fastjson.JSON;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import org.bouncycastle.jcajce.provider.asymmetric.dh.BCDHPrivateKey;
 
 import javax.crypto.spec.SecretKeySpec;
 import javax.xml.bind.DatatypeConverter;
+import java.security.Key;
 import java.util.Map;
 
 /**
@@ -21,7 +23,7 @@ public class JwtTokenUtil {
     /**
      * 秘钥
      **/
-    private volatile static SecretKeySpec secretKeySpec;
+    private volatile static Key secretKey;
 
     /**
      * @param payLoad
@@ -31,9 +33,16 @@ public class JwtTokenUtil {
      * @Date 2020/3/16
      **/
     public static String generatorToken(Map<String, Object> payLoad) {
+//        JwtBuilder builder = Jwts.builder()
+//                .setId(id)
+//                .setSubject(subject)   // 主题
+//                .setIssuer("user")     // 签发者
+//                .setIssuedAt(now)      // 签发时间
+//                .signWith(signatureAlgorithm, secretKey); // 签名算法以及密匙
         return Jwts.builder()
-                .setPayload(JSON.toJSONString(payLoad))
-                .signWith(getSignatureAlgorithm(), getSecretKeySpec())
+                .setClaims(payLoad)
+//                .setPayload(JSON.toJSONString(payLoad))
+                .signWith(getSignatureAlgorithm(), "4ea88cecb57c4eeea8f382da613799a3")
                 .compact();
     }
 
@@ -45,23 +54,22 @@ public class JwtTokenUtil {
      * @return      io.jsonwebtoken.Claims
      **/
     public static Claims parseToken(String token) {
-        return Jwts.parser().setSigningKey(getSecretKeySpec()).parseClaimsJws(token).getBody();
+        return Jwts.parser().setSigningKey(getSecretKey()).parseClaimsJws(token).getBody();
     }
 
-    private static SecretKeySpec getSecretKeySpec() {
-        if (secretKeySpec != null) {
-            return secretKeySpec;
+    private static Key getSecretKey() {
+        if (secretKey != null) {
+            return secretKey;
         }
         synchronized (JwtTokenUtil.class) {
-            if (secretKeySpec != null) {
-                return secretKeySpec;
+            if (secretKey != null) {
+                return secretKey;
             }
-
         }
         //秘钥
-        byte[] bytes = DatatypeConverter.parseBase64Binary("4ea88cecb57c4eeea8f382da613799a3");
-        secretKeySpec = new SecretKeySpec(bytes, getSignatureAlgorithm().getJcaName());
-        return secretKeySpec;
+        byte[] encodedKey = DatatypeConverter.parseBase64Binary("4ea88cecb57c4eeea8f382da613799a3");
+        secretKey = new SecretKeySpec(encodedKey, 0,encodedKey.length,"AES");
+        return secretKey;
     }
 
     private static SignatureAlgorithm getSignatureAlgorithm(){
@@ -69,11 +77,11 @@ public class JwtTokenUtil {
             return signatureAlgorithm;
         }
         synchronized (JwtTokenUtil.class) {
-            if (secretKeySpec != null) {
+            if (signatureAlgorithm != null) {
                 return signatureAlgorithm;
             }
             //加密算法
-            signatureAlgorithm = SignatureAlgorithm.ES256;
+            signatureAlgorithm = SignatureAlgorithm.HS512;
             return signatureAlgorithm;
         }
     }
