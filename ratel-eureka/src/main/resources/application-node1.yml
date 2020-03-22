@@ -2,15 +2,21 @@ server:
   port: 8001
 spring:
   application:
-    name: eureka-server1
+    name: ratel-eureka
+
+security:
+  basic:
+    enabled: false
+
 eureka:
   instance:
-    hostname: eureka-server1 #Eureka实例的主机名
+    hostname: ratel-eureka #Eureka实例的主机名
   client:
     fetch-registry: false #不把自己注册到Eureka上
     register-with-eureka: false #不从Eureka获取服务的注册信息
     serviceUrl:
-      defaultZone: http://eureka2.ratel.com:8002/eureka/,http://eureka3.ratel.com:8003/eureka/ #Eureka 注册中心地址
+      defaultZone: http://eureka1.ratel.com:8001/eureka/ #Eureka 注册中心地址
 #      defaultZone: http://localhost:8000/eureka/ #Eureka 注册中心地址
-
-
+logging:
+  level:
+    root: debug

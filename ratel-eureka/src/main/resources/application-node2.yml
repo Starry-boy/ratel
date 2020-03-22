@@ -10,5 +10,5 @@ eureka:
     fetch-registry: false #不向注册中心注册自己
     register-with-eureka: false #是否检索服务
     serviceUrl:
-      defaultZone: http://eureka1.ratel.com:8001/eureka/,http://eureka3.ratel.com:8003/eureka/ #Eureka 注册中心地址
+      defaultZone: http://eureka1.com.ratel.com:8001/eureka/,http://eureka3.com.ratel.com:8003/eureka/ #Eureka 注册中心地址
 

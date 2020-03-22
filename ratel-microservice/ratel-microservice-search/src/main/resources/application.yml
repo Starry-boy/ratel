@@ -1,0 +1,25 @@
+#server.port=8041
+#server.servlet.context-path=/search
+#eureka.instance.prefer-ip-address:true
+#eureka.client.register-with-eureka:true
+#eureka.client.service-url.defaultZone:http://eureka1.ratel.com:8001/eureka/
+server:
+  port: 8021
+  servlet:
+    context-path: /search
+
+
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    register-with-eureka: true
+    service-url:
+      deafultZone: http://eureka1.ratel.com:8001/eureka/
+spring:
+  application:
+    name: @artifactId@
+
+logging:
+  level:
+    root: debug

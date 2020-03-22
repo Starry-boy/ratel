@@ -7,8 +7,11 @@
         <module>ratel-sso</module>
         <module>ratel-eureka</module>
         <module>ratel-admin</module>
-        <module>ratel-search</module>
         <module>ratel-common</module>
+        <module>ratel-log</module>
+        <module>ratel-mq</module>
+        <module>ratel-microservice</module>
+        <module>ratel-microservice-api</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -19,13 +22,23 @@
     <groupId>com.ratel</groupId>
     <artifactId>ratel</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>ratel</name>
+    <name>com.ratel</name>
     <description>Demo project for Spring Boot</description>
 
     <properties>
         <java.version>1.8</java.version>
+        <ratel-microservice-search-api.version>0.0.1-SNAPSHOT</ratel-microservice-search-api.version>
+        <ratel-microservice-order-api.version>0.0.1-SNAPSHOT</ratel-microservice-order-api.version>
+
+        <ratel-common-base.version>0.0.1-SNAPSHOT</ratel-common-base.version>
+        <ratel-admin-consumer.version>0.0.1-SNAPSHOT</ratel-admin-consumer.version>
+        <ratel-log-api.version>0.0.1-SNAPSHOT</ratel-log-api.version>
+        <ratel-log-microservice.version>0.0.1-SNAPSHOT</ratel-log-microservice.version>
+
+
         <spring-boot.version>2.1.13.RELEASE</spring-boot.version>
         <spring-cloud.version>Greenwich.SR5</spring-cloud.version>
+        <spring-cloud-openfeign.version>2.1.5.RELEASE</spring-cloud-openfeign.version>
         <mybatis.plus.version>3.2.0</mybatis.plus.version>
         <druid.version>1.1.10</druid.version>
         <jjwt.version>0.9.0</jjwt.version>
@@ -59,6 +72,22 @@
 
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>com.ratel</groupId>
+                <artifactId>ratel-microservice-search-api</artifactId>
+                <version>${ratel-microservice-search-api.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.ratel</groupId>
+                <artifactId>ratel-common-base</artifactId>
+                <version>${ratel-common-base.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.ratel</groupId>
+                <artifactId>ratel-microservice-order-api</artifactId>
+                <version>${ratel-microservice-order-api.version}</version>
+            </dependency>
+
             <!--springcloud-->
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
@@ -66,6 +95,12 @@
                 <version>${spring-cloud.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-openfeign-dependencies</artifactId>
+                <version>${spring-cloud-openfeign.version}</version>
             </dependency>
 
             <dependency>

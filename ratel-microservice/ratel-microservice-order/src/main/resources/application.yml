@@ -1,0 +1,36 @@
+server:
+  port: 8022
+  servlet:
+    context-path: /order
+
+spring:
+  application:
+    name: @artifactId@
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*' #springboot2.0之后需要加上这个才会开放所有端点
+  security:
+    enabled: false #关闭端口访问授权控制
+  endpoint:
+    health:
+      show-details: always #访问 health端点时获取详细信息 PS:自定义 healthIndicator 必须开启次选项
+
+#访问info端点时会显示下面的配置信息
+info:
+  app: ${spring.application.name}
+  version: @project.version@
+
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://eureka1.ratel.com:8001/eureka/
+
+logging:
+  level:
+    root: debug

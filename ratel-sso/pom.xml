@@ -76,11 +76,6 @@
             <artifactId>fastjson</artifactId>
             <version>${fastJson.version}</version>
         </dependency>
-        <!--springboot actuator 监控和管理Spring Boot应用-->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-actuator</artifactId>
-        </dependency>
         <!--Ribbon 客户端负载均衡-->
       <!--  <dependency>
             <groupId>org.springframework.cloud</groupId>
@@ -91,7 +86,6 @@
             <artifactId>dynamic-datasource-spring-boot-starter</artifactId>
             <version>2.5.7</version>
         </dependency>-->
-
         <!--swagger2 api测试框架-->
         <dependency>
             <groupId>io.springfox</groupId>
