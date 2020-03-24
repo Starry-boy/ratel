@@ -23,8 +23,8 @@ public class RatelResponse<T> {
                                     .setStatus(true);
     }
 
-    public RatelResponse err(String code, String msg){
-        return new RatelResponse<>().setCode(code).setMsg(msg);
+    public RatelResponse err(ResponseCodeEnum codeEnum, String msg){
+        return new RatelResponse<>().setCode(codeEnum.getCode()).setMsg(msg);
     }
     public RatelResponse err(){
         return new RatelResponse<>().setCode(ResponseCodeEnum.FailED.getCode()).setMsg(ResponseCodeEnum.FailED.getMsg());

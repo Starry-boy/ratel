@@ -21,6 +21,11 @@ public class SearchFeignClient implements SearchFeignApi {
 
     @Override
     public RatelResponse<Map<String, String>> get(Long id) {
+        try {
+            Thread.sleep(10000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         Map<String, String> map = searchService.get(id);
         return new RatelResponse<Map<String, String>>().ok(map);
     }

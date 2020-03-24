@@ -34,3 +34,13 @@ eureka:
 logging:
   level:
     root: debug
+feign:
+  compression: #开启gzip 数据压缩
+    request:
+      enabled: true  #请求数据压缩
+      mime-types: application/json #指定需要压缩的数据类型,全部压缩则去掉该选项
+      min-request-size: 2048 #指定数据什么时候开始压缩
+    response:
+      enabled: true #响应数据压缩
+  hystrix:
+    enabled: true
