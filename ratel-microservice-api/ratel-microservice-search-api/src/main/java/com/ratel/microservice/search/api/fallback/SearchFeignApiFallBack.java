@@ -12,12 +12,12 @@ import java.util.Map;
  * @author ratel
  * @date 2020/3/24
  */
-@Component
-@RequestMapping("/fallback/search")
+//@Component
+//@RequestMapping("/fallback/search")
 public class SearchFeignApiFallBack implements SearchFeignApi {
     @Override
     public RatelResponse<Map<String, String>> get(Long id) {
-        return new RatelResponse<>().err(ResponseCodeEnum.FailED,"调用失败，快速响应");
+        return new RatelResponse<>().err(ResponseCodeEnum.FAILED,"调用失败，快速响应");
     }
 
     public SearchFeignApiFallBack() {

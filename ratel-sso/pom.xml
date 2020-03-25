@@ -104,8 +104,8 @@
 
         <dependency>
             <groupId>com.ratel</groupId>
-            <artifactId>ratel-common</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+            <artifactId>ratel-common-base</artifactId>
+            <version>${ratel-common-base.version}</version>
 <!--            <scope>compile</scope>-->
         </dependency>
     </dependencies>

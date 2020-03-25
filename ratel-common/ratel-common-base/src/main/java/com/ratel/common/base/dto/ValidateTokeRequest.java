@@ -1,4 +1,4 @@
-package com.ratel.common.dto;
+package com.ratel.common.base.dto;
 
 import lombok.Data;
 

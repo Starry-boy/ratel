@@ -2,7 +2,7 @@ package com.ratel.common.base.enums;
 
 public enum ResponseCodeEnum {
     SUCCESS("200","response success"),
-    FailED("500","response failed");
+    FAILED("500","response failed");
 
     private String code;
     private String msg;

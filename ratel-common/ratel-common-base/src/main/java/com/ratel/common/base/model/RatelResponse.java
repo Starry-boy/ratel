@@ -27,7 +27,7 @@ public class RatelResponse<T> {
         return new RatelResponse<>().setCode(codeEnum.getCode()).setMsg(msg);
     }
     public RatelResponse err(){
-        return new RatelResponse<>().setCode(ResponseCodeEnum.FailED.getCode()).setMsg(ResponseCodeEnum.FailED.getMsg());
+        return new RatelResponse<>().setCode(ResponseCodeEnum.FAILED.getCode()).setMsg(ResponseCodeEnum.FAILED.getMsg());
     }
 
 }

@@ -1,6 +1,9 @@
 package com.ratel.sso.controller;
 
 import com.alibaba.fastjson.JSON;
+import com.ratel.common.base.dto.UserLoginRequest;
+import com.ratel.common.base.dto.ValidateTokeRequest;
+import com.ratel.common.base.model.RatelResponse;
 import io.jsonwebtoken.Claims;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
@@ -11,9 +14,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.*;
-import com.ratel.common.dto.RatelResponse;
-import com.ratel.common.dto.UserLoginRequest;
-import com.ratel.common.dto.ValidateTokeRequest;
 import com.ratel.sso.domain.User;
 import com.ratel.sso.service.UserService;
 import com.ratel.sso.util.JwtTokenUtil;
@@ -65,6 +65,6 @@ public class SsoController {
     @PostMapping("validateToken")
     public RatelResponse validateToken(@RequestBody @Valid ValidateTokeRequest validateTokeRequest){
         Claims claims = JwtTokenUtil.parseToken(validateTokeRequest.getToken());
-        return new RatelResponse().success(claims.get("user"));
+        return new RatelResponse().ok(claims.get("user"));
     }
 }
