@@ -18,13 +18,8 @@ import java.util.Map;
 @Component
 public class FeignErrorLogFallBackFactory implements FallbackFactory {
     @Override
-    public SearchFeignApi create(Throwable throwable) {
+    public Object create(Throwable throwable) {
         log.error("feign client invoke rpc exception! error message ====>>>>{}",throwable.getMessage());
-        return new SearchFeignApi() {
-                @Override
-                public RatelResponse<Map<String, String>> get(Long id) {
-                    return new RatelResponse<>().err(ResponseCodeEnum.FAILED,"调用失败，feignFallFactory 快速响应");
-                }
-        } ;
+        return new Object();
     }
 }

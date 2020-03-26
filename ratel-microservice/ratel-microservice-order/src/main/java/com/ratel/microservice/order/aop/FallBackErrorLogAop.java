@@ -16,8 +16,8 @@ import javax.jws.WebResult;
  * @date 2020/3/25
  */
 @Slf4j
-@Aspect
-@Component
+//@Aspect
+//@Component
 public class FallBackErrorLogAop {
     @Pointcut("@annotation(org.springframework.cloud.openfeign.FeignClient)")
     public void exceptionPointCut() {

@@ -6,6 +6,7 @@ import com.ratel.microservice.search.api.service.SearchFeignApi;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -18,6 +19,16 @@ public class SearchFeignApiFallBack implements SearchFeignApi {
     @Override
     public RatelResponse<Map<String, String>> get(Long id) {
         return new RatelResponse<>().err(ResponseCodeEnum.FAILED,"调用失败，快速响应");
+    }
+
+    @Override
+    public String getStr(Long id) {
+        return null;
+    }
+
+    @Override
+    public List<String> batchGetStr(List<Long> ids) {
+        return null;
     }
 
     public SearchFeignApiFallBack() {
