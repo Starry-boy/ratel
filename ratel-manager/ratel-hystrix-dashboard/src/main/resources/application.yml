@@ -1,0 +1,14 @@
+server:
+  port: 8050
+  servlet:
+    context-path: /dashboard
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    register-with-eureka: true
+    service-url:
+      deafultZone: http://eureka1.ratel.com:8001/eureka/
+spring:
+  application:
+    name: @artifactId@

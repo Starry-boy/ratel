@@ -21,6 +21,7 @@ public interface SearchFeignApi {
     @PostMapping("feignApi/search/get/{id}")
     @HystrixProperty(name = "requestCache.enabled",value = "true")
     @CacheResult
+    @HystrixCommand
     RatelResponse get(@CacheKey @PathVariable("id") Long id);
 
     @PostMapping("feignApi/search/getStr/{id}")

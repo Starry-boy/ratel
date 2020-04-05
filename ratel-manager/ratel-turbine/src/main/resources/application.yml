@@ -1,0 +1,21 @@
+server:
+  port: 8060
+  servlet:
+    context-path: /turbine
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka1.ratel.com:8001/eureka/
+  instance:
+    prefer-ip-address: true
+
+spring:
+  application:
+    name: @artifactId@
+
+turbine:
+  app-config: RATEL-MICROSERVICE-ORDER #指定监控的服务名
+  cluster-name-expression: new String('default') #指定集群名字 默认集群名为 default
+  combine-host-port: true #按服务名加端口 区分为不同的应用
+  instanceUrlSuffix: order/actuator/hystrix.stream #如果被监控的应用带有前缀，则需要在这里配上后缀

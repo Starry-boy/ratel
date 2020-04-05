@@ -1,4 +1,13 @@
-com.ratel.eureka.port:8001,8002,8003
-com.ratel.sso.prot:8020,8021
-com.ratel.search.provider.port:8030
-com.ratel.search.consumer.port:8040
+# eureka
+http://localhost:8001/eureka/
+# sso 
+http://localhost:8020/sso
+# microservice order api test
+http://localhost:8022/order/swagger-ui.html
+# microservice search api test
+http://localhost:8041/search/swagger-ui.html
+
+# Hystrix Dashboard 监控
+http://localhost:8050/dashboard/hystrix
+# turbine 集群监控
+http://localhost:8060/turbine/turbine.stream
