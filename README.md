@@ -11,3 +11,9 @@ http://localhost:8041/search/swagger-ui.html
 http://localhost:8050/dashboard/hystrix
 # turbine 集群监控
 http://localhost:8060/turbine/turbine.stream
+
+#Zuul 网关
+http://localhost:8070/zuul
+
+#Config 配置中心
+http://localhost:8080

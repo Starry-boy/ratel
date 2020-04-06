@@ -1,0 +1,36 @@
+spring:
+  application:
+    name: @artifactId@
+server:
+  port: 8070
+#  servlet:
+#    context-path: /zuul
+
+# eureka 注册中心配置
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://eureka1.ratel.com:8001/eureka/
+
+# 指定路由规则
+# 匹配优先级 按配置先后循序
+zuul:
+  routes:
+#简写
+    ratel-microservice-order: #微服务名字
+      path: /order/** #匹配规则
+    api-foward: #微服务名字 或 url 前缀
+      path: forward:/test #表示将匹配上的 请求转发到当前网关的接口上
+#    api-a:
+#      path: /order/** #匹配路径
+#      serviceId: ratel-microservice-order #微服务名字
+#      url: http://localhost:8082 #重定向，不依赖 eureka
+#  ignored-services: ratel-microservice-order #忽略掉这个微服务，否则url以 /ratel-microservice-order 为前缀的也会访问 order 服务
+#  ignored-services: * # 管理所有默认路由的匹配规则
+
+logging:
+  level:
+    root: debug

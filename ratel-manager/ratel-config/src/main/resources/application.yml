@@ -1,0 +1,21 @@
+spring:
+  application:
+    name: @artifactId@
+  cloud:
+    config:
+      server:
+        git:
+          uri: "" #仓库地址
+          username: "" #用户名
+          password: "" #密码
+
+server:
+  port: 8080
+
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    register-with-eureka: true
+    service-url:
+      deafultZone: http://eureka1.ratel.com:8001/eureka/
