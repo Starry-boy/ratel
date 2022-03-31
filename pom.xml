@@ -38,7 +38,7 @@
         <ratel-log-microservice.version>0.0.1-SNAPSHOT</ratel-log-microservice.version>
 
 
-        <spring-boot.version>2.1.13.RELEASE</spring-boot.version>
+        <spring-boot.version>2.5.12</spring-boot.version>
         <spring-cloud.version>Greenwich.SR5</spring-cloud.version>
         <spring-cloud-openfeign.version>2.1.5.RELEASE</spring-cloud-openfeign.version>
         <spring-cloud-hystrix.version>2.1.5.RELEASE</spring-cloud-hystrix.version>
